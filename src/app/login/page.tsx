@@ -32,6 +32,7 @@ function Login() {
     setLoading(true);
     try {
       await signIn("credentials", { email, password });
+      router.push("/");
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -126,11 +127,13 @@ function Login() {
           OR
           <span className="flex-1 h-px bg-gray-300"></span>
         </div>
-
-        <button className="w-full flex items-center justify-center gap-3 border border-gray-300 hover:bg-gray-50 py-3 rounded-xl text-gray-700 font-medium transition-all duration-200">
+        <div
+          className="w-full flex items-center justify-center gap-3 border border-gray-300 hover:bg-gray-50 py-3 rounded-xl text-gray-700 font-medium transition-all duration-200"
+          onClick={() => signIn("google", { callbackUrl: "/" })}
+        >
           <Image src={googleImage} alt="google" width={20} height={20} />
           Continue with Google
-        </button>
+        </div>
       </motion.form>
 
       <p
